@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>作品展示-瀑布流</title>
+	<style>
+		*{
+			margin:0;
+			padding:0;
+			list-style: none;
+		}
+		#div{
+			overflow: hidden;
+		}
+		ul{
+			width:280px;
+			border:1px solid #ccc;
+			float: left;
+			margin:10px;
+		}
+		li{
+			margin:10px;
+		}
+	</style>
+	<script>
+	//随机数
+	function RanDom(n,m){
+		return parseInt(Math.random()*(m-n)+n);
+	}
+	window.onload=function(){
+		var oDiv=document.getElementById('div');
+		var aUl=oDiv.children;
+		//创建li
+		function CreateLi(){
+			var oLi=document.createElement('li');
+			oLi.style.height=RanDom(100,500)+'px';
+			var r=RanDom(0,256);
+			var g=RanDom(0,256);
+			var b=RanDom(0,256);
+			oLi.style.background='rgb('+r+','+g+','+b+')';
+			return oLi;
+		}
+		//添加20个li
+		function AppendLi20(){
+			for(var i=0; i<20; i++){
+				//创建空数组，装ul
+				var arr=[];
+				for(var j=0; j<aUl.length; j++){
+					arr[j]=aUl[j];
+				}
+				//给数组排序（用元素内容到顶部的距离）
+				arr.sort(function(ul1,ul2){
+					return ul1.offsetHeight-ul2.offsetHeight;
+				});
+				arr[0].appendChild(CreateLi());
+			}
+		}
+		AppendLi20();//打开执行一下添加20个
+		//滚动条变化时加载
+		window.onscroll=function(){
+			//滚动条高度
+			var scrollT=document.documentElement.scrollTop||document.body.scrollTop;
+			//可视区高度
+			var winT=document.documentElement.clientHeight;
+			var scrollBottom=scrollT+winT;
+			//判断
+			if(scrollBottom>=document.body.offsetHeight-499){
+				AppendLi20();
+			}
+		}
+	}
+	</script>
+</head>
+<body>
+	<div id="div">
+		<ul></ul>
+		<ul></ul>
+		<ul></ul>
+	</div>
+</body>
+</html>

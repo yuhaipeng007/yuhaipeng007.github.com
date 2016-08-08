@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>3D盒子-键盘控制</title>
+<style>
+#div1{ position:relative;width:200px; height:200px; background:#ccc; margin:100px auto; line-height:200px; text-align:center; font-size:50px;
+	transform-style:preserve-3d;
+	transform:perspective(800px) rotateX(0deg) rotateY(0deg) ;
+	/*transition:4s all ease;*/
+}
+#div1 div{ position:absolute;left:0;top:0;width:100%; height:100%; background:#38C8C1;}
+
+#div1 .front{ transform:translateZ(100px);}
+#div1 .back{ transform:translateZ(-100px);}
+#div1 .left{ transform: rotateY(-90deg) translateZ(100px);}
+#div1 .right{ transform: rotateY(90deg) translateZ(100px);}
+#div1 .top{ transform: rotateX(90deg) translateZ(100px);}
+#div1 .bottom{ transform: rotateX(-90deg) translateZ(100px);}
+
+/*#div1:active{transform:perspective(800px) rotateY(-90deg);}*/
+</style>
+<script>
+window.onload = function(){
+	var oDiv = document.getElementById("div1");
+	
+	var bLeft = bTop = bRight = bBottom = false;
+	
+	var y = 0;
+	var x = 0;
+	
+	setInterval(function(){
+		if(bLeft){
+			y -= 10;
+		}
+		if(bRight){
+			y += 10;
+		}
+		
+		if(bTop){
+			x += 10;
+		}
+		if(bBottom){
+			x -= 10;
+		}
+		oDiv.style.transform = "perspective(800px) rotateX("+x+"deg)  rotateY("+y+"deg)";	
+	
+	},30);
+	
+	document.onkeydown = function(ev){
+		var keyCode = ev.keyCode;
+		
+		if(keyCode == 37){//左边 
+		 	bLeft = true;
+		}
+		if(keyCode == 39){//右边 
+			bRight = true;
+		}
+		if(keyCode == 38){//上边 
+		 	bTop = true;
+		}
+		if(keyCode == 40){//下边 
+			bBottom = true;
+		}
+	};	
+	
+	document.onkeyup = function(ev){
+		var keyCode = ev.keyCode;
+		
+		if(keyCode == 37){//左边 
+		 	bLeft = false;
+		}
+		if(keyCode == 39){//右边 
+			bRight = false;
+		}
+		
+		if(keyCode == 38){//上边 
+		 	bTop = false;
+		}
+		if(keyCode == 40){//下边 
+			bBottom = false;
+		}
+	};	
+	
+ 
+};
+</script>
+</head>
+
+<body>
+<div id="div1">
+	<div class="front">front</div>
+	<div class="back">back</div>
+    <div class="left">left</div>
+	<div class="right">right</div>
+	<div class="top">top</div>
+	<div class="bottom">bottom</div> 
+</div>
+</body>
+</html>
+
+
+
+
+
+
+

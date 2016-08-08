@@ -1,0 +1,148 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<meta name="description" content="智能社是一家专注于web前端开发技术的公司，目前主要提供JavaScript培训和HTML5培训两项服务，同时还推出了大量javascript基础知识教程，智能课堂为你带来全新的学习方法和快乐的学习体验。" />
+<title>作品展示-轮播图</title>
+<style>
+	*{
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	img{
+		vertical-align: top;
+	}
+	.box{
+		width: 600px;
+		height: 300px;
+		margin:0 auto;
+		position: relative;
+	}
+	.box div{
+		display: none;
+	}
+	.box img{
+		width: 600px;
+		height: 300px;
+	}
+	.box a{
+		position: absolute;
+		width:40px;
+		height: 40px;
+		line-height: 40px;
+		text-align: center;
+		background:#000;
+		color:#fff;
+		font-size: 30px;
+		text-decoration: none;
+		top:50%;
+		margin-top: -20px;
+	}
+	.box a:hover{
+		background:red;
+	}
+	.box .next{
+		right:0px;
+	}
+	.box ul{
+		width: 70px;
+		position: absolute;
+		bottom: 10px;
+		right:10px;
+	}
+	.box ul li{
+		width: 10px;
+		height: 10px;
+		background: #000;
+		margin:0 2px;
+		float: left;
+	}
+	.box ul .on{
+		background: red;
+	}
+</style>
+<script>
+window.onload = function(){
+	var oBox = document.getElementById('box');
+	var aDiv = oBox.getElementsByTagName('div');
+	var aLi = oBox.getElementsByTagName('li');
+	var oNext = document.getElementById('next');
+	var oPrev = document.getElementById('prev');
+	var count = 0;
+	var timer = null;
+
+	for(var i = 0; i < aLi.length; i++){
+		aLi[i].index = i;
+		aLi[i].onclick = function(){
+			count = this.index;
+			tab();
+		}
+	}
+
+	//选项卡功能
+	function tab(){
+		for(var j = 0; j < aLi.length; j++){
+			aDiv[j].style.display = 'none';
+			aLi[j].className = '';
+		}
+		aLi[count].className = 'on';
+		aDiv[count].style.display = 'block';
+	}
+
+	// 下一个
+	function next(){
+		count++;
+		if(count >= aLi.length){
+			count = 0;
+		}
+		tab();
+	}
+	oNext.onclick = next;
+
+	//上一个
+	function prev(){
+		count -- ;
+		if(count <= -1){
+			count = aLi.length-1;
+		}
+		tab();
+	}
+	oPrev.onclick = prev;
+
+	// 自动执行
+	timer = setInterval(next,1000);
+
+	//鼠标经过暂停
+	oBox.onmouseover = function(){
+		clearInterval(timer);
+	}
+	// 鼠标离开再次开启定时器
+	oBox.onmouseout = function(){
+		timer = setInterval(next,2000);
+	}
+}
+</script>
+</head>
+
+<body>
+	<div class="box" id="box">
+		<div style="display:block;"><img src="img/1.png" alt=""></div>
+		<div><img src="img/2.png" alt=""></div>
+		<div><img src="img/3.png" alt=""></div>
+		<div><img src="img/4.png" alt=""></div>
+		<div><img src="img/5.png" alt=""></div>
+		<a href="javascript:;" class="next" id="next">&gt;</a>
+		<a href="javascript:;" class="prev" id="prev">&lt;</a>
+		<ul>
+			<li class="on"></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+</body>
+</html>
