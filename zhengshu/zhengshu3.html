@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>证书</title>
+	<style>
+		.box{
+			width:800px;
+			height: 500px;
+			border:2px #ccc solid;
+			margin:100px auto;
+			position: relative;
+		}
+		.box1{
+			width:800px;
+			height: 500px;
+		}
+		.box1 img{
+			width:100%;
+			height: 100%;
+		}
+		#span1{
+			width:50px;
+			height:50px;
+			background: #000;
+			color:#fff;
+			font-size: 50px;
+			text-align: center;
+			line-height: 50px;
+			position: absolute;
+			top:215px;
+			left:0;
+			opacity:0.5;
+		}
+		#span2{
+			width:50px;
+			height:50px;
+			background: #000;
+			color:#fff;
+			font-size: 50px;
+			text-align: center;
+			line-height: 50px;
+			position: absolute;
+			top:215px;
+			right:0;
+			opacity:0.5;
+		}
+		#span1:hover{
+			opacity: 1;
+		}
+		#span2:hover{
+			opacity: 1;
+		}
+	</style>
+	<script>
+	window.onload=function(){
+		var oS1=document.getElementById('span1');
+		var oS2=document.getElementById('span2');
+		var oBox1=document.getElementById('box1');
+		var i=3;
+		oS1.onclick=function(){
+			i--;
+			if(i<1){
+				i=4;
+			}
+			oBox1.innerHTML='<img src="../img/zhengshu'+i+'.JPG"/>';
+		}
+		oS2.onclick=function(){
+			i++;
+			if(i>4){
+				i=1;
+			}
+			oBox1.innerHTML='<img src="../img/zhengshu'+i+'.JPG"/>';
+		}
+	}
+	</script>
+</head>
+<body>
+	<div class="box">
+		<span id="span1"><</span>
+		<div class="box1" id="box1">
+			<img src="../img/zhengshu3.JPG" id="img">
+		</div>
+		<span id="span2">></span>
+	</div>
+	
+</body>
+</html>

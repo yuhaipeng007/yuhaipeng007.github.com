@@ -10,8 +10,8 @@ window.onload=function(){
 		function show(){
 			aSpan[0].innerHTML='<a href=" introduction.html"  target="_blank">'+'个人简介'+'</a>';
 			aSpan[1].innerHTML='<a href="works.html" target="_blank">'+'作品展示'+'</a>';
-			aSpan[2].innerHTML='<a href="javascript:;">'+'工作履历'+'</a>';
-			aSpan[3].innerHTML='<a href="javascript:;">'+'擅长技能'+'</a>';
+			aSpan[2].innerHTML='<a href="experience.html" target="_blank">'+'工作履历'+'</a>';
+			aSpan[3].innerHTML='<a href="skill.html" target="_blank">'+'擅长技能'+'</a>';
 		}
 		show();
 		move(aSpan[0],{'top':50},{'easing':'ease-in','duration':500});
